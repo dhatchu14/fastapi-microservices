@@ -65,3 +65,7 @@ def create(product: ProductRequest):
             "quantity": new_product.quantity
         }
     }
+
+@app.get('/products/{pk}')
+def get(pk: str):
+    return Product.get(pk)
