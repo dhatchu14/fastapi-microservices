@@ -73,3 +73,20 @@ def get(pk: str):
 @app.delete('/products/{pk}')
 def delete(pk: str):
     return Product.delete(pk)
+
+@app.put('/products/{pk}')
+def update(pk: str, product: ProductRequest):
+    existing_product = Product.get(pk)
+    existing_product.name = product.name
+    existing_product.price = product.price
+    existing_product.quantity = product.quantity
+    existing_product.save()
+    return {
+        "message": "Product updated successfully",
+        "product": {
+            "id": existing_product.pk,
+            "name": existing_product.name,
+            "price": existing_product.price,
+            "quantity": existing_product.quantity
+        }
+    }
