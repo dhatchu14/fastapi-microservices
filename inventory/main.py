@@ -69,3 +69,7 @@ def create(product: ProductRequest):
 @app.get('/products/{pk}')
 def get(pk: str):
     return Product.get(pk)
+
+@app.delete('/products/{pk}')
+def delete(pk: str):
+    return Product.delete(pk)
